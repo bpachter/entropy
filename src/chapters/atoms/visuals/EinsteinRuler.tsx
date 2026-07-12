@@ -204,7 +204,7 @@ export function EinsteinRuler() {
             <line x1={PLOT.x0} y1={PLOT.y0} x2={PLOT.x0} y2={PLOT.y1} stroke="rgba(255,255,255,0.28)" />
             <line x1={PLOT.x0} y1={PLOT.y1} x2={PLOT.x1} y2={PLOT.y1} stroke="rgba(255,255,255,0.28)" />
             <text x={PLOT.x0 - 8} y={PLOT.y0 + 4} fill="#9aa3b8" fontSize="12" textAnchor="end">⟨x²⟩</text>
-            <text x={PLOT.x0 - 8} y={PLOT.y0 + 18} fill="#6b7280" fontSize="10" textAnchor="end">μm² · per axis</text>
+            <text x={PLOT.x0 - 8} y={PLOT.y0 + 18} fill="#6b7280" fontSize="10" textAnchor="end">μm²</text>
             <text x={PLOT.x1} y={PLOT.y1 + 18} fill="#9aa3b8" fontSize="12" textAnchor="end">t (s)</text>
             {[15, 30, 45, 60].map((t) => (
               <text key={t} x={X(t)} y={PLOT.y1 + 16} fill="#6b7280" fontSize="10" textAnchor="middle">{t}</text>

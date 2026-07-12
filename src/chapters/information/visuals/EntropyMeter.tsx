@@ -54,22 +54,28 @@ export function EntropyMeter() {
         {LETTERS.map((L, i) => (
           <Box key={L} sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
             <Box sx={{ width: 22, height: 22, borderRadius: 1, bgcolor: SYMBOLS[i], display: 'grid', placeItems: 'center', color: '#04121a', fontWeight: 700, fontSize: 13, flexShrink: 0 }}>{L}</Box>
-            <Box sx={{ position: 'relative', flex: 1, height: 22, borderRadius: 1, bgcolor: 'rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+            <Box sx={{ position: 'relative', flex: 1, height: 22, borderRadius: 1, bgcolor: 'rgba(255,255,255,0.05)', overflow: 'hidden', minWidth: 0 }}>
               <Box sx={{ position: 'absolute', inset: 0, width: `${p[i] * 100}%`, bgcolor: SYMBOLS[i], opacity: 0.55, transition: 'width 0.1s linear' }} />
-              <Typography sx={{ position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)', fontFamily: "'JetBrains Mono Variable', monospace", fontSize: 11.5, color: '#eef1f8' }}>
+              {/* One line, never wraps: full text on desktop, compact on phones. */}
+              <Typography sx={{ position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)', fontFamily: "'JetBrains Mono Variable', monospace", fontSize: 11.5, color: '#eef1f8', whiteSpace: 'nowrap', display: { xs: 'none', sm: 'block' } }}>
                 p = {p[i].toFixed(2)} · surprise {p[i] > 0 ? (-Math.log2(p[i])).toFixed(1) : '∞'} bits
               </Typography>
+              <Typography sx={{ position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)', fontFamily: "'JetBrains Mono Variable', monospace", fontSize: 11, color: '#eef1f8', whiteSpace: 'nowrap', display: { xs: 'block', sm: 'none' } }}>
+                p {p[i].toFixed(2)} · {p[i] > 0 ? (-Math.log2(p[i])).toFixed(1) : '∞'} bits
+              </Typography>
             </Box>
-            <Slider value={w[i]} min={0} max={50} step={1} onChange={(_, v) => setW((prev) => prev.map((x, j) => (j === i ? (v as number) : x)))} sx={{ width: 120, color: SYMBOLS[i], flexShrink: 0 }} />
+            <Slider value={w[i]} min={0} max={50} step={1} onChange={(_, v) => setW((prev) => prev.map((x, j) => (j === i ? (v as number) : x)))} sx={{ width: { xs: 76, sm: 120 }, color: SYMBOLS[i], flexShrink: 0 }} />
           </Box>
         ))}
       </Box>
 
       {/* Entropy gauge */}
       <Box sx={{ mt: 2.5 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', mb: 0.5 }}>
-          <Typography variant="overline" sx={{ color: 'text.secondary' }}>Entropy · H = −Σ pᵢ log₂ pᵢ</Typography>
-          <Typography sx={{ fontFamily: "'JetBrains Mono Variable', monospace", fontSize: 22, color: '#2dd4bf' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', mb: 0.5, gap: 1, flexWrap: 'wrap' }}>
+          {/* The full formula needs ~260px, so phones get the short form — no mid-formula wrap. */}
+          <Typography variant="overline" sx={{ color: 'text.secondary', whiteSpace: 'nowrap', display: { xs: 'none', sm: 'block' } }}>Entropy · H = −Σ pᵢ log₂ pᵢ</Typography>
+          <Typography variant="overline" sx={{ color: 'text.secondary', whiteSpace: 'nowrap', display: { xs: 'block', sm: 'none' } }}>Entropy · H</Typography>
+          <Typography sx={{ fontFamily: "'JetBrains Mono Variable', monospace", fontSize: { xs: 19, sm: 22 }, color: '#2dd4bf', whiteSpace: 'nowrap' }}>
             {H.toFixed(3)} <span style={{ fontSize: 13, color: '#9aa3b8' }}>/ {HMAX.toFixed(2)} bits</span>
           </Typography>
         </Box>

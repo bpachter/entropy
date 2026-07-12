@@ -124,8 +124,10 @@ export function Paddlewheel() {
           <rect x="332" y={topY} width="14" height={bulbY - topY} rx="7" fill="rgba(255,255,255,0.05)" stroke="#565c66" />
           <circle cx="339" cy={bulbY + 8} r="13" fill="#e0402f" />
           <rect x="335" y={colTop} width="8" height={bulbY - colTop + 8} fill="#e0402f" />
-          <text x="356" y={topY + 6} fill="#9aa3b8" fontSize="11" fontFamily="'JetBrains Mono Variable', monospace">{tMax.toFixed(0)}°</text>
-          <text x="356" y={bulbY} fill="#9aa3b8" fontSize="11" fontFamily="'JetBrains Mono Variable', monospace">{tMin.toFixed(0)}°</text>
+          {/* Scale ticks live on the LEFT of the tube; the live readout owns the right,
+              so the two can never collide as the column moves. */}
+          <text x="326" y={topY + 6} textAnchor="end" fill="#9aa3b8" fontSize="11" fontFamily="'JetBrains Mono Variable', monospace">{tMax.toFixed(0)}°</text>
+          <text x="326" y={bulbY} textAnchor="end" fill="#9aa3b8" fontSize="11" fontFamily="'JetBrains Mono Variable', monospace">{tMin.toFixed(0)}°</text>
           <text x="360" y={colTop + 4} fill="#ff9166" fontSize="14" fontWeight="700" fontFamily="'JetBrains Mono Variable', monospace">{temp.toFixed(3)}°C</text>
         </svg>
 
@@ -149,11 +151,19 @@ export function Paddlewheel() {
         </Box>
       </Box>
 
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 1.5, px: 1, flexWrap: 'wrap' }}>
-        <Typography sx={{ fontSize: 13, color: 'text.secondary', minWidth: 70 }}>Weight</Typography>
-        <Slider value={mass} min={5} max={40} step={1} onChange={(_, v) => setMass(v as number)} sx={{ color: '#8a8f99', flex: 1, minWidth: 120 }} disabled={started || dropping} />
-        <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>Water</Typography>
-        <Slider value={waterMass} min={0.05} max={0.5} step={0.01} onChange={(_, v) => setWaterMass(v as number)} sx={{ color: '#57c2e0', flex: 1, minWidth: 120 }} disabled={started || dropping} />
+      {/* Each slider gets its own labelled row (they stack on phones), so a wrapped
+          row can never leave a label orphaned beside the wrong control. */}
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, columnGap: 3, rowGap: 0.25, mt: 1.5, px: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <Typography sx={{ fontSize: 12.5, color: 'text.secondary', minWidth: 86, fontFamily: "'JetBrains Mono Variable', monospace" }}>Weight {mass}kg</Typography>
+          <Slider value={mass} min={5} max={40} step={1} onChange={(_, v) => setMass(v as number)} sx={{ color: '#8a8f99', flex: 1 }} disabled={started || dropping} />
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <Typography sx={{ fontSize: 12.5, color: 'text.secondary', minWidth: 86, fontFamily: "'JetBrains Mono Variable', monospace" }}>Water {(waterMass * 1000).toFixed(0)}g</Typography>
+          <Slider value={waterMass} min={0.05} max={0.5} step={0.01} onChange={(_, v) => setWaterMass(v as number)} sx={{ color: '#57c2e0', flex: 1 }} disabled={started || dropping} />
+        </Box>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mt: 1, px: 1, flexWrap: 'wrap' }}>
         <Button variant="contained" onClick={release} disabled={dropping} sx={{ bgcolor: '#f5b73c', color: '#0a090c', '&:hover': { bgcolor: '#ffd98a' } }}>
           {started ? 'Drop again' : 'Release weight'}
         </Button>

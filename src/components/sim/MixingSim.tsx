@@ -29,7 +29,8 @@ export function MixingSim() {
         onMetrics={onMetrics}
       />
 
-      <Box sx={{ position: 'absolute', top: 14, left: 14 }}>
+      {/* Meter claims the full top strip on phones so the legend can never collide with it. */}
+      <Box sx={{ position: 'absolute', top: { xs: 10, sm: 14 }, left: { xs: 10, sm: 14 }, right: { xs: 10, sm: 'auto' }, maxWidth: { sm: 380 } }}>
         <EntropyMeter
           value={metrics?.mixing ?? 0}
           label="Mixing entropy · S = k log W"
@@ -38,12 +39,13 @@ export function MixingSim() {
         />
       </Box>
 
-      <Box sx={{ position: 'absolute', top: 14, right: 14, display: 'flex', gap: 0.75 }}>
-        <Chip size="small" label="hot gas" sx={{ bgcolor: 'rgba(255,106,67,0.16)', color: '#ff9166', border: '1px solid rgba(255,106,67,0.4)' }} />
-        <Chip size="small" label="cold gas" sx={{ bgcolor: 'rgba(66,166,255,0.16)', color: '#7ad3ff', border: '1px solid rgba(66,166,255,0.4)' }} />
+      {/* Legend: top-right on desktop, bottom-right on phones (below the meter strip). */}
+      <Box sx={{ position: 'absolute', top: { xs: 'auto', sm: 14 }, bottom: { xs: 12, sm: 'auto' }, right: { xs: 10, sm: 14 }, display: 'flex', gap: 0.75 }}>
+        <Chip size="small" label="hot gas" sx={{ bgcolor: 'rgba(255,106,67,0.32)', color: '#ff9166', border: '1px solid rgba(255,106,67,0.4)', backdropFilter: 'blur(6px)' }} />
+        <Chip size="small" label="cold gas" sx={{ bgcolor: 'rgba(66,166,255,0.28)', color: '#7ad3ff', border: '1px solid rgba(66,166,255,0.4)', backdropFilter: 'blur(6px)' }} />
       </Box>
 
-      <Box sx={{ position: 'absolute', bottom: 14, left: 14 }}>
+      <Box sx={{ position: 'absolute', bottom: { xs: 10, sm: 14 }, left: { xs: 10, sm: 14 } }}>
         <SimControls
           running={running}
           onToggle={() => setRunning((r) => !r)}
@@ -51,7 +53,8 @@ export function MixingSim() {
         />
       </Box>
 
-      <Typography sx={{ position: 'absolute', bottom: 16, right: 16, fontSize: 11, color: 'text.secondary' }}>
+      {/* Orbit is mouse-only (OrbitControls are disabled on touch), so hide the hint there. */}
+      <Typography sx={{ position: 'absolute', bottom: 16, right: 16, fontSize: 11, color: 'text.secondary', '@media (pointer: coarse)': { display: 'none' }, display: { xs: 'none', sm: 'block' } }}>
         drag to orbit
       </Typography>
     </Box>

@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton, Tooltip } from '@mui/material';
+import { Box, Typography, IconButton, Tooltip, useMediaQuery } from '@mui/material';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import PauseRounded from '@mui/icons-material/PauseRounded';
 import RestartAltRounded from '@mui/icons-material/RestartAltRounded';
@@ -11,6 +11,9 @@ const panelSx = {
   px: 1.75,
   py: 1.25,
 } as const;
+
+/** Compact HUD styling on phones, where the overlay must not swallow the canvas. */
+const useDense = () => useMediaQuery('(max-width:640px)');
 
 /** A labelled 0→1 bar with a gradient fill; the storytelling meter of the app. */
 export function EntropyMeter({
@@ -25,21 +28,22 @@ export function EntropyMeter({
   gradient?: string;
 }) {
   const pct = Math.round(Math.min(1, Math.max(0, value)) * 100);
+  const dense = useDense();
   return (
-    <Box sx={{ ...panelSx, minWidth: 210 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', mb: 0.75 }}>
-        <Typography variant="overline" sx={{ color: 'text.secondary', lineHeight: 1 }}>
+    <Box sx={{ ...panelSx, minWidth: dense ? 0 : 210, px: dense ? 1.25 : 1.75, py: dense ? 0.75 : 1.25 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 1, mb: dense ? 0.5 : 0.75 }}>
+        <Typography variant="overline" sx={{ color: 'text.secondary', lineHeight: 1.2, fontSize: dense ? 9 : undefined, letterSpacing: dense ? '0.1em' : undefined, minWidth: 0 }}>
           {label}
         </Typography>
-        <Typography sx={{ fontFamily: "'JetBrains Mono Variable', monospace", fontSize: 14, color: '#eef1f8' }}>
+        <Typography sx={{ fontFamily: "'JetBrains Mono Variable', monospace", fontSize: dense ? 12.5 : 14, color: '#eef1f8', flexShrink: 0 }}>
           {pct}%
         </Typography>
       </Box>
-      <Box sx={{ position: 'relative', height: 8, borderRadius: 4, bgcolor: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', height: dense ? 6 : 8, borderRadius: 4, bgcolor: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
         <Box sx={{ position: 'absolute', inset: 0, width: `${pct}%`, background: gradient, transition: 'width 0.12s linear' }} />
       </Box>
       {caption && (
-        <Typography sx={{ mt: 0.75, fontSize: 11.5, color: 'text.secondary', lineHeight: 1.35 }}>{caption}</Typography>
+        <Typography sx={{ mt: dense ? 0.5 : 0.75, fontSize: dense ? 10.5 : 11.5, color: 'text.secondary', lineHeight: 1.35 }}>{caption}</Typography>
       )}
     </Box>
   );
@@ -49,10 +53,11 @@ export function EntropyMeter({
 export function TempBars({ left, right, max }: { left: number; right: number; max: number }) {
   const l = Math.min(1, left / max);
   const r = Math.min(1, right / max);
+  const dense = useDense();
   return (
-    <Box sx={{ ...panelSx, minWidth: 210 }}>
-      <Typography variant="overline" sx={{ color: 'text.secondary' }}>
-        Chamber temperature
+    <Box sx={{ ...panelSx, minWidth: dense ? 0 : 210, px: dense ? 1.25 : 1.75, py: dense ? 0.75 : 1.25 }}>
+      <Typography variant="overline" sx={{ color: 'text.secondary', fontSize: dense ? 9 : undefined, letterSpacing: dense ? '0.1em' : undefined, lineHeight: 1.2, display: 'block' }}>
+        {dense ? 'Chambers' : 'Chamber temperature'}
       </Typography>
       <Row label="Left" value={l} color="#3aa0ff" align="left" />
       <Row label="Right" value={r} color="#ff5330" align="right" />

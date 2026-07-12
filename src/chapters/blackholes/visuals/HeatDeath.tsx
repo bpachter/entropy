@@ -41,11 +41,13 @@ export function HeatDeath() {
     <Box sx={{ width: '100%' }}>
       <svg viewBox="0 0 640 250" width="100%" style={{ display: 'block' }}>
         {/* era bands */}
-        {ERAS.map((e) => (
+        {ERAS.map((e, i) => (
           <g key={e.name}>
             <rect x={X(e.from)} y={AXIS.yTop} width={X(Math.min(e.to, AXIS.max)) - X(e.from)} height={AXIS.yBot - AXIS.yTop} fill={e.color} opacity={e.name === era.name ? 0.16 : 0.06} />
             <line x1={X(e.from)} y1={AXIS.yTop} x2={X(e.from)} y2={AXIS.yBot} stroke="rgba(255,255,255,0.08)" />
-            <text x={X(e.from) + 5} y={AXIS.yTop + 14} fill={e.color} fontSize="10.5" fontFamily="'JetBrains Mono Variable', monospace" opacity={0.9}>{e.name}</text>
+            {/* Alternate baselines so a label wider than its band ("Stelliferous") can't
+                collide with its neighbour on the same line. */}
+            <text x={X(e.from) + 5} y={AXIS.yTop + 13 + (i % 2) * 13} fill={e.color} fontSize="9.5" fontFamily="'JetBrains Mono Variable', monospace" opacity={0.9}>{e.name}</text>
           </g>
         ))}
 

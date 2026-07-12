@@ -67,11 +67,12 @@ export function NoisyChannel() {
   const rate = coded ? 1 / 3 : 1;
 
   const Row = ({ bits, compare }: { bits: number[]; compare?: boolean }) => (
-    <Box sx={{ display: 'flex', gap: '2px' }}>
+    // Tighter gap + smaller digits on phones: 40 cells at ~343px leave <7px per cell.
+    <Box sx={{ display: 'flex', gap: { xs: '1px', sm: '2px' } }}>
       {bits.map((b, i) => {
         const err = compare && b !== MESSAGE[i];
         return (
-          <Box key={i} sx={{ flex: 1, height: 22, borderRadius: '2px', display: 'grid', placeItems: 'center', fontFamily: "'JetBrains Mono Variable', monospace", fontSize: 11, color: err ? '#04121a' : b ? '#2dd4bf' : '#3a5560', bgcolor: err ? '#ff5a6a' : b ? 'rgba(45,212,191,0.18)' : 'rgba(255,255,255,0.03)' }}>
+          <Box key={i} sx={{ flex: 1, height: { xs: 18, sm: 22 }, borderRadius: '2px', display: 'grid', placeItems: 'center', fontFamily: "'JetBrains Mono Variable', monospace", fontSize: { xs: 8, sm: 11 }, color: err ? '#04121a' : b ? '#2dd4bf' : '#3a5560', bgcolor: err ? '#ff5a6a' : b ? 'rgba(45,212,191,0.18)' : 'rgba(255,255,255,0.03)' }}>
             {b}
           </Box>
         );

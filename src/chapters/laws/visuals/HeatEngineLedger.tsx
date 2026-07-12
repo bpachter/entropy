@@ -100,7 +100,9 @@ export function HeatEngineLedger() {
         {/* Qc band → down + quanta */}
         <rect x={CX - qcT / 2} y={ENGINE.y + ENGINE.h} width={qcT} height={300 - (ENGINE.y + ENGINE.h)} fill="url(#qcGrad)" opacity="0.5" />
         {Array.from({ length: DOTS }).map((_, i) => <circle key={i} ref={(el) => (qcDots.current[i] = el)} r="3.5" fill="#bfe0ef" opacity="0" />)}
-        <rect x={CX - 46} y="300" width="92" height="34" rx="6" fill="#4aa8ff" opacity="0.9" />
+        {/* Sink pill sized to its longest text ("Q꜀ 100 · T꜀ 520K" ≈ 118px at 12px mono),
+            so the dark-on-blue label never spills onto the dark background. */}
+        <rect x={CX - 64} y="300" width="128" height="34" rx="6" fill="#4aa8ff" opacity="0.9" />
         <text x={CX} y="322" textAnchor="middle" fill="#04121f" fontSize="12" fontWeight="700" fontFamily="'JetBrains Mono Variable', monospace">Q꜀ {QC.toFixed(0)} · T꜀ {tc}K</text>
 
         <defs>

@@ -39,17 +39,35 @@ export function DemonSim() {
         onMetrics={onMetrics}
       />
 
-      <Box sx={{ position: 'absolute', top: 14, left: 14, display: 'flex', flexDirection: 'column', gap: 1 }}>
-        <TempBars left={metrics?.tempLeft ?? 0} right={metrics?.tempRight ?? 0} max={tMax} />
-        <EntropyMeter
-          value={metrics?.separation ?? 1}
-          label="Entropy"
-          caption={`Demon has sorted ${metrics?.demonPasses ?? 0} molecules.`}
-          gradient="linear-gradient(90deg,#5a6377,#9aa3b8)"
-        />
+      {/* On phones the two panels share one slim top strip (side by side) instead of
+          stacking into a tower that hides half the gas. */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: { xs: 10, sm: 14 },
+          left: { xs: 10, sm: 14 },
+          right: { xs: 10, sm: 'auto' },
+          display: 'flex',
+          flexDirection: { xs: 'row', sm: 'column' },
+          alignItems: { xs: 'stretch', sm: 'flex-start' },
+          gap: 1,
+        }}
+      >
+        <Box sx={{ flex: { xs: 1, sm: '0 0 auto' }, minWidth: 0 }}>
+          <TempBars left={metrics?.tempLeft ?? 0} right={metrics?.tempRight ?? 0} max={tMax} />
+        </Box>
+        <Box sx={{ flex: { xs: 1, sm: '0 0 auto' }, minWidth: 0 }}>
+          <EntropyMeter
+            value={metrics?.separation ?? 1}
+            label="Entropy"
+            caption={`Demon has sorted ${metrics?.demonPasses ?? 0} molecules.`}
+            gradient="linear-gradient(90deg,#5a6377,#9aa3b8)"
+          />
+        </Box>
       </Box>
 
-      <Box sx={{ position: 'absolute', top: 14, right: 14 }}>
+      {/* The demon's switch: top-right on desktop, bottom-right on phones (clear of the strip). */}
+      <Box sx={{ position: 'absolute', top: { xs: 'auto', sm: 14 }, bottom: { xs: 10, sm: 'auto' }, right: { xs: 10, sm: 14 } }}>
         <FormControlLabel
           control={<Switch checked={demonOn} onChange={(e) => setDemonOn(e.target.checked)} />}
           label={<Typography sx={{ fontSize: 13, fontWeight: 600 }}>Demon</Typography>}
@@ -57,7 +75,7 @@ export function DemonSim() {
         />
       </Box>
 
-      <Box sx={{ position: 'absolute', bottom: 14, left: 14 }}>
+      <Box sx={{ position: 'absolute', bottom: { xs: 10, sm: 14 }, left: { xs: 10, sm: 14 } }}>
         <SimControls
           running={running}
           onToggle={() => setRunning((r) => !r)}
@@ -65,7 +83,8 @@ export function DemonSim() {
         />
       </Box>
 
-      <Typography sx={{ position: 'absolute', bottom: 16, right: 16, fontSize: 11, color: 'text.secondary' }}>
+      {/* Orbit is mouse-only (OrbitControls are disabled on touch), so hide the hint there. */}
+      <Typography sx={{ position: 'absolute', bottom: 16, right: 16, fontSize: 11, color: 'text.secondary', '@media (pointer: coarse)': { display: 'none' }, display: { xs: 'none', sm: 'block' } }}>
         drag to orbit
       </Typography>
     </Box>

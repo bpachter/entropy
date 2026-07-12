@@ -85,8 +85,8 @@ export function MicrostatesViz() {
             </linearGradient>
           </defs>
           <text x={0} y={chartH + 16} fill="#9aa3b8" fontSize="11">all on the right</text>
-          <text x={chartW / 2 - 40} y={chartH + 16} fill="#9aa3b8" fontSize="11">evenly spread</text>
-          <text x={chartW - 74} y={chartH + 16} fill="#9aa3b8" fontSize="11">all on the left</text>
+          <text x={chartW / 2} y={chartH + 16} textAnchor="middle" fill="#9aa3b8" fontSize="11">evenly spread</text>
+          <text x={chartW} y={chartH + 16} textAnchor="end" fill="#9aa3b8" fontSize="11">all on the left</text>
         </svg>
       </Box>
 

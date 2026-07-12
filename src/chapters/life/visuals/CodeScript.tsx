@@ -69,8 +69,9 @@ export function CodeScript() {
             )}
           </g>
         ))}
+        {/* Anchored to the top-right corner (inside the viewBox), where it can never clip. */}
         {L > VISIBLE && (
-          <text x={10 + shown * cellW + 8} y={49} fill="#9aa3b8" fontSize="12" fontFamily="'JetBrains Mono Variable', monospace">
+          <text x="570" y="14" textAnchor="end" fill="#9aa3b8" fontSize="12" fontFamily="'JetBrains Mono Variable', monospace">
             +{(L - VISIBLE).toLocaleString()} more
           </text>
         )}
