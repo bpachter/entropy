@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Box, Typography, ThemeProvider } from '@mui/material';
 import { motion } from 'framer-motion';
 import { chapterById } from '@/content/chapters';
@@ -5,6 +6,7 @@ import { makeChapterTheme } from '@/theme';
 import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
+import { FigurePlate } from '@/components/layout/FigurePlate';
 import { CosmicPanel } from './components/CosmicPanel';
 import { blackHoleBlocks, type BlackHoleBlock } from './content';
 import { EventHorizon } from './visuals/EventHorizon';
@@ -29,13 +31,23 @@ export function BlackHolesChapter() {
         <ChapterHero chapter={chapter} backdrop={<VoidBackdrop />} />
 
         <Box sx={{ px: { xs: 2.5, md: 4 }, py: { xs: 4, md: 8 } }}>
-          {blackHoleBlocks.map((block, i) => {
-            if (block.kind === 'movement') return <Movement key={i} block={block} />;
-            const Visual = PANELS[block.visual];
+          {blackHoleBlocks.map((block, i, arr) => {
+            let el;
+            if (block.kind === 'movement') {
+              el = <Movement block={block} />;
+            } else {
+              const Visual = PANELS[block.visual];
+              el = (
+                <CosmicPanel index={block.index} name={block.name} caption={block.caption}>
+                  <Visual />
+                </CosmicPanel>
+              );
+            }
             return (
-              <CosmicPanel key={i} index={block.index} name={block.name} caption={block.caption}>
-                <Visual />
-              </CosmicPanel>
+              <Fragment key={i}>
+                {el}
+                {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[1]} index={chapter.index} />}
+              </Fragment>
             );
           })}
         </Box>

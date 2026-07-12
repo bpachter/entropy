@@ -4,6 +4,7 @@ import { makeChapterTheme } from '@/theme';
 import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
+import { FigurePlate } from '@/components/layout/FigurePlate';
 import { ScrollyChapter } from '@/components/scrolly/ScrollyChapter';
 
 const theme = makeChapterTheme(entropyChapter.palette);
@@ -22,6 +23,16 @@ export function EntropyChapter() {
         </Box>
 
         <ScrollyChapter chapter={entropyChapter} />
+
+        <Box sx={{ px: { xs: 2.5, md: 4 } }}>
+          <FigurePlate
+            layout="banner"
+            figure={entropyChapter.figures[2]}
+            index={entropyChapter.index}
+            blurb="Entropy is counting: S = k log W. He staked his life on atoms being real, and did not live to be proved right."
+          />
+        </Box>
+
         <ChapterFooter chapter={entropyChapter} />
       </Box>
     </ThemeProvider>

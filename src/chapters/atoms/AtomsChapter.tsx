@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Box, Typography, ThemeProvider } from '@mui/material';
 import { motion } from 'framer-motion';
 import { chapterById } from '@/content/chapters';
@@ -5,6 +6,7 @@ import { makeChapterTheme } from '@/theme';
 import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
+import { FigurePlate } from '@/components/layout/FigurePlate';
 import { SpecimenVignette } from './components/SpecimenVignette';
 import { PatentSheet } from './components/PatentSheet';
 import { atomsBlocks, type AtomsBlock } from './content';
@@ -31,21 +33,31 @@ export function AtomsChapter() {
         <ChapterHero chapter={chapter} backdrop={<MicroscopeBackdrop />} />
 
         <Box sx={{ px: { xs: 2.5, md: 4 }, py: { xs: 4, md: 8 } }}>
-          {atomsBlocks.map((block, i) => {
-            if (block.kind === 'divider') return <MovementDivider key={i} label={block.label} />;
-            if (block.kind === 'prose') return <Annotated key={i} block={block} />;
-            if (block.kind === 'specimen') {
+          {atomsBlocks.map((block, i, arr) => {
+            let el;
+            if (block.kind === 'divider') {
+              el = <MovementDivider label={block.label} />;
+            } else if (block.kind === 'prose') {
+              el = <Annotated block={block} />;
+            } else if (block.kind === 'specimen') {
               const Visual = SPECIMENS[block.visual];
-              return (
-                <SpecimenVignette key={i} index={block.index} name={block.name} label={block.label} caption={block.caption}>
+              el = (
+                <SpecimenVignette index={block.index} name={block.name} label={block.label} caption={block.caption}>
                   <Visual />
                 </SpecimenVignette>
               );
+            } else {
+              el = (
+                <PatentSheet fig={block.fig} title={block.title} caption={block.caption}>
+                  <SzilardFridge />
+                </PatentSheet>
+              );
             }
             return (
-              <PatentSheet key={i} fig={block.fig} title={block.title} caption={block.caption}>
-                <SzilardFridge />
-              </PatentSheet>
+              <Fragment key={i}>
+                {el}
+                {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[0]} index={chapter.index} />}
+              </Fragment>
             );
           })}
         </Box>

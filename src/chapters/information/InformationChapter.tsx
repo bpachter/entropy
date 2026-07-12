@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Box, Typography, ThemeProvider } from '@mui/material';
 import { motion } from 'framer-motion';
 import { chapterById } from '@/content/chapters';
@@ -5,6 +6,7 @@ import { makeChapterTheme } from '@/theme';
 import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
+import { FigurePlate } from '@/components/layout/FigurePlate';
 import { SignalPanel } from './components/SignalPanel';
 import { infoBlocks, type InfoBlock } from './content';
 import { EntropyMeter } from './visuals/EntropyMeter';
@@ -29,13 +31,23 @@ export function InformationChapter() {
         <ChapterHero chapter={chapter} backdrop={<SignalBackdrop />} />
 
         <Box sx={{ px: { xs: 2.5, md: 4 }, py: { xs: 4, md: 8 } }}>
-          {infoBlocks.map((block, i) => {
-            if (block.kind === 'transmission') return <Transmission key={i} block={block} />;
-            const Visual = SIGNALS[block.visual];
+          {infoBlocks.map((block, i, arr) => {
+            let el;
+            if (block.kind === 'transmission') {
+              el = <Transmission block={block} />;
+            } else {
+              const Visual = SIGNALS[block.visual];
+              el = (
+                <SignalPanel index={block.index} name={block.name} caption={block.caption}>
+                  <Visual />
+                </SignalPanel>
+              );
+            }
             return (
-              <SignalPanel key={i} index={block.index} name={block.name} caption={block.caption}>
-                <Visual />
-              </SignalPanel>
+              <Fragment key={i}>
+                {el}
+                {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[0]} index={chapter.index} />}
+              </Fragment>
             );
           })}
         </Box>

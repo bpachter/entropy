@@ -3,7 +3,7 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 import type { Chapter } from '@/content/types';
-import { FigureRow } from './FigureRow';
+import { FigurePlate } from './FigurePlate';
 
 /**
  * Full-height chapter title cover. Structure is shared across chapters so the
@@ -76,12 +76,17 @@ export function ChapterHero({ chapter, backdrop }: { chapter: Chapter; backdrop?
           >
             {chapter.subtitle}.
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 3, mb: 5 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 3, mb: 4 }}>
             <Typography sx={{ fontFamily: "'JetBrains Mono Variable', monospace", color: 'text.secondary', fontSize: 14 }}>
               {chapter.era}
             </Typography>
+            <Box sx={{ flex: 1, maxWidth: 160, height: 1, background: `linear-gradient(90deg, ${hexA(palette.primary, 0.5)}, transparent)` }} />
           </Box>
-          <FigureRow figures={chapter.figures} />
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 2.5, md: 3.5 } }}>
+            {chapter.figures.map((f) => (
+              <FigurePlate key={f.name} figure={f} layout="card" />
+            ))}
+          </Box>
         </motion.div>
       </Box>
 

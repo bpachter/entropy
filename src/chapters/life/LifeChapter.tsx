@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Box, Typography, ThemeProvider } from '@mui/material';
 import { motion } from 'framer-motion';
 import { chapterById } from '@/content/chapters';
@@ -5,6 +6,7 @@ import { makeChapterTheme } from '@/theme';
 import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
+import { FigurePlate } from '@/components/layout/FigurePlate';
 import { Demonstration } from './components/Demonstration';
 import { lifeBlocks, type LifeBlock } from './content';
 import { FluctuationLaw } from './visuals/FluctuationLaw';
@@ -30,13 +32,23 @@ export function LifeChapter() {
         <ChapterHero chapter={chapter} backdrop={<CellBackdrop />} />
 
         <Box sx={{ px: { xs: 2.5, md: 4 }, py: { xs: 4, md: 8 } }}>
-          {lifeBlocks.map((block, i) => {
-            if (block.kind === 'passage') return <Passage key={i} block={block} />;
-            const Visual = DEMOS[block.visual];
+          {lifeBlocks.map((block, i, arr) => {
+            let el;
+            if (block.kind === 'passage') {
+              el = <Passage block={block} />;
+            } else {
+              const Visual = DEMOS[block.visual];
+              el = (
+                <Demonstration index={block.index} name={block.name} caption={block.caption}>
+                  <Visual />
+                </Demonstration>
+              );
+            }
             return (
-              <Demonstration key={i} index={block.index} name={block.name} caption={block.caption}>
-                <Visual />
-              </Demonstration>
+              <Fragment key={i}>
+                {el}
+                {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[0]} index={chapter.index} />}
+              </Fragment>
             );
           })}
         </Box>

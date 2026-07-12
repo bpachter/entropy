@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Box, Typography, ThemeProvider } from '@mui/material';
 import { motion } from 'framer-motion';
 import { chapterById } from '@/content/chapters';
@@ -5,6 +6,7 @@ import { makeChapterTheme } from '@/theme';
 import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
+import { FigurePlate } from '@/components/layout/FigurePlate';
 import { VisualGate } from '@/anim/gate';
 import { engineBlocks, type EngineBlock, type PlateId } from './content';
 import { SteamEngine } from './visuals/SteamEngine';
@@ -33,7 +35,12 @@ export function EngineChapter() {
         <ChapterHero chapter={chapter} backdrop={<FireboxBackdrop />} />
 
         <Box sx={{ px: { xs: 2.5, md: 4 }, py: { xs: 4, md: 8 } }}>
-          {engineBlocks.map((block, i) => (block.kind === 'prose' ? <Prose key={i} block={block} /> : <Plate key={i} block={block} />))}
+          {engineBlocks.map((block, i, arr) => (
+            <Fragment key={i}>
+              {block.kind === 'prose' ? <Prose block={block} /> : <Plate block={block} />}
+              {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[0]} index={chapter.index} />}
+            </Fragment>
+          ))}
         </Box>
 
         <ChapterFooter chapter={chapter} />
