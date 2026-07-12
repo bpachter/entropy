@@ -1,0 +1,76 @@
+/* Variable fonts are imported as modules in main.tsx (reliable Vite resolution). */
+
+:root {
+  --ent-bg: #07080c;
+  --ent-bg-raised: #0e1017;
+  --ent-ink: #eef1f8;
+  --ent-ink-dim: #9aa3b8;
+  --ent-hot: #ff5a3c;
+  --ent-hot-soft: #ff9166;
+  --ent-cold: #46b7ff;
+  --ent-cold-soft: #7ad3ff;
+  --ent-line: rgba(255, 255, 255, 0.08);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--ent-bg);
+}
+
+html {
+  /* Don't let mobile browsers auto-inflate our carefully sized type. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter Variable', system-ui, -apple-system, sans-serif;
+  color: var(--ent-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  /* Smooth momentum scroll + no grey tap flashes on touch. */
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+/* Canvases/SVGs must never trap the scroll gesture on touch (only their
+   sliders/controls are interactive, and MUI handles those). */
+canvas {
+  touch-action: pan-y;
+}
+
+/* A slim, on-theme scrollbar so the long scroll feels intentional. */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ent-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--ent-cold), var(--ent-hot));
+  border-radius: 6px;
+  border: 2px solid var(--ent-bg);
+}
+
+::selection {
+  background: rgba(255, 90, 60, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

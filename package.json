@@ -1,0 +1,46 @@
+{
+  "name": "entropy",
+  "version": "0.1.0",
+  "description": "Entropy — an interactive journey through the history of thermodynamics, from Carnot's steam engines to the heat death of the universe. Inspired by Paul Sen's Einstein's Fridge.",
+  "type": "module",
+  "private": false,
+  "license": "MIT",
+  "keywords": [
+    "thermodynamics",
+    "entropy",
+    "physics",
+    "education",
+    "interactive",
+    "scrollytelling",
+    "history-of-science"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@fontsource-variable/fraunces": "^5.1.0",
+    "@fontsource-variable/inter": "^5.1.1",
+    "@fontsource-variable/jetbrains-mono": "^5.1.1",
+    "@mui/icons-material": "^6.5.0",
+    "@mui/material": "^6.5.0",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "framer-motion": "^11.15.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.169.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.11"
+  }
+}
