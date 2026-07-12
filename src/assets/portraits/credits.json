@@ -1,0 +1,107 @@
+[
+  {
+    "slug": "joule",
+    "title": "James Prescott Joule",
+    "license": "Public domain",
+    "artist": "Henry Roscoe",
+    "source": "https://commons.wikimedia.org/wiki/File:Joule_James_sitting.jpg"
+  },
+  {
+    "slug": "kelvin",
+    "title": "William Thomson, 1st Baron Kelvin",
+    "license": "Public domain",
+    "artist": "T. &amp; R. Annan &amp; Sons; restored by Adam Cuerden[1]",
+    "source": "https://commons.wikimedia.org/wiki/File:Sir_William_Thomson,_Baron_Kelvin_by_T._%26_R._Annan_%26_Sons.jpg"
+  },
+  {
+    "slug": "clausius",
+    "title": "Rudolf Clausius",
+    "license": "Public domain",
+    "artist": "Picture taken by Theo Schafgans (1859–1907), Bonn; heliogravüre by Meisenbach, Riffarth &amp; Co. Berlin. Scanned, image processed and uploaded by Kuebi = Armin Kübelbeck",
+    "source": "https://commons.wikimedia.org/wiki/File:Rudolf_Clausius_01.jpg"
+  },
+  {
+    "slug": "maxwell",
+    "title": "James Clerk Maxwell",
+    "license": "Public domain",
+    "artist": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:James-Clerk-Maxwell-1831-1879.jpg"
+  },
+  {
+    "slug": "boltzmann",
+    "title": "Ludwig Boltzmann",
+    "license": "Public domain",
+    "artist": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:Boltzmann2.jpg"
+  },
+  {
+    "slug": "einstein",
+    "title": "Albert Einstein",
+    "license": "Public domain",
+    "artist": "Orren Jack Turner",
+    "source": "https://commons.wikimedia.org/wiki/File:Albert_Einstein_Head_cleaned.jpg"
+  },
+  {
+    "slug": "perrin",
+    "title": "Jean Baptiste Perrin",
+    "license": "Public domain",
+    "artist": "Agence de presse Meurisse",
+    "source": "https://commons.wikimedia.org/wiki/File:Jean_Perrin_1926.jpg"
+  },
+  {
+    "slug": "szilard",
+    "title": "Leo Szilard",
+    "license": "Public domain",
+    "artist": "unknown photographer Furfur",
+    "source": "https://commons.wikimedia.org/wiki/File:Leo_Szilard-cropped.png"
+  },
+  {
+    "slug": "hawking",
+    "title": "Stephen Hawking",
+    "license": "Public domain",
+    "artist": "NASA",
+    "source": "https://commons.wikimedia.org/wiki/File:Stephen_Hawking.StarChild.jpg"
+  },
+  {
+    "slug": "schrodinger",
+    "title": "Erwin Schrödinger",
+    "license": "Public domain",
+    "artist": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:Erwin_Schr%C3%B6dinger_-_Narodowe_Archiwum_Cyfrowe_(1-E-939).jpg"
+  },
+  {
+    "slug": "bekenstein",
+    "title": "Jacob Bekenstein",
+    "license": "Public domain",
+    "artist": "Bekenstein",
+    "source": "https://commons.wikimedia.org/wiki/File:Bekenstein100_(cropped).JPG"
+  },
+  {
+    "slug": "shannon",
+    "title": "Claude Shannon",
+    "license": "CC BY 2.0",
+    "artist": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:C.E._Shannon._Tekniska_museet_43069_(2x3_crop).jpg"
+  },
+  {
+    "slug": "delbruck",
+    "title": "Max Delbrück",
+    "license": "CC BY-SA 3.0",
+    "artist": "The original uploader was MalteAhrens at German Wikipedia.",
+    "source": "https://commons.wikimedia.org/wiki/File:Maxdelbr%C3%BCck-cr.jpg"
+  },
+  {
+    "slug": "carnot",
+    "title": "carnot",
+    "license": "Public domain",
+    "artist": "Louis-Léopold Boilly, 1813 (author d. 1845; PD-Art)",
+    "source": "https://en.wikipedia.org/wiki/Sadi_Carnot_(physicist)"
+  },
+  {
+    "slug": "landauer",
+    "title": "landauer",
+    "license": "Copyrighted free use",
+    "artist": "See Wikimedia Commons file page",
+    "source": "https://commons.wikimedia.org/wiki/File:Rolf_Landauer.jpg"
+  }
+]

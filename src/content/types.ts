@@ -27,6 +27,8 @@ export interface Figure {
   role: string;
   /** 'hot' | 'cold' tints the avatar along the app's thermal axis. */
   tone: 'hot' | 'cold';
+  /** Portrait slug in src/assets/portraits (e.g. 'boltzmann'); falls back to initials. */
+  img?: string;
 }
 
 export interface Chapter {

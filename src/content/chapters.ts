@@ -24,9 +24,9 @@ export const entropyChapter: Chapter = {
     bgRaised: '#0e1017',
   },
   figures: [
-    { name: 'Rudolf Clausius', years: '1822–1888', role: 'Named entropy; stated the second law', tone: 'hot' },
-    { name: 'James Clerk Maxwell', years: '1831–1879', role: 'Conjured the demon', tone: 'cold' },
-    { name: 'Ludwig Boltzmann', years: '1844–1906', role: 'Entropy as counting: S = k log W', tone: 'hot' },
+    { name: 'Rudolf Clausius', years: '1822–1888', role: 'Named entropy; stated the second law', tone: 'hot', img: 'clausius' },
+    { name: 'James Clerk Maxwell', years: '1831–1879', role: 'Conjured the demon', tone: 'cold', img: 'maxwell' },
+    { name: 'Ludwig Boltzmann', years: '1844–1906', role: 'Entropy as counting: S = k log W', tone: 'hot', img: 'boltzmann' },
   ],
   beats: [
     {
@@ -122,7 +122,7 @@ export const chapters: Chapter[] = [
     subtitle: 'Sadi Carnot and the steam engine that started a science',
     era: '1824 – 1849', mood: 'Steam, iron, and the first idea',
     palette: { primary: '#ff8a3d', primarySoft: '#ffb98a', secondary: '#7fb1c9', secondarySoft: '#bfe0ef', bg: '#0b0806', bgRaised: '#17110a' },
-    figures: [{ name: 'Sadi Carnot', years: '1796–1832', role: 'Founder of thermodynamics', tone: 'hot' }],
+    figures: [{ name: 'Sadi Carnot', years: '1796–1832', role: 'Founder of thermodynamics', tone: 'hot', img: 'carnot' }],
   }),
   stub({
     index: 2, id: 'laws', title: 'Two Laws', available: true,
@@ -130,8 +130,8 @@ export const chapters: Chapter[] = [
     era: '1843 – 1865', mood: 'Paddlewheels, falling weights, and absolute cold',
     palette: { primary: '#f5b73c', primarySoft: '#ffd98a', secondary: '#57c2e0', secondarySoft: '#a9e4f2', bg: '#0a090c', bgRaised: '#15131a' },
     figures: [
-      { name: 'James Joule', years: '1818–1889', role: 'Mechanical equivalent of heat', tone: 'hot' },
-      { name: 'William Thomson (Kelvin)', years: '1824–1907', role: 'Absolute temperature', tone: 'cold' },
+      { name: 'James Joule', years: '1818–1889', role: 'Mechanical equivalent of heat', tone: 'hot', img: 'joule' },
+      { name: 'William Thomson (Kelvin)', years: '1824–1907', role: 'Absolute temperature', tone: 'cold', img: 'kelvin' },
     ],
   }),
   entropyChapter,
@@ -141,9 +141,9 @@ export const chapters: Chapter[] = [
     era: '1905 – 1933', mood: 'Jittering pollen and a patented fridge',
     palette: { primary: '#9a7bff', primarySoft: '#c2adff', secondary: '#4fd6c0', secondarySoft: '#a3ece0', bg: '#08080e', bgRaised: '#12121d' },
     figures: [
-      { name: 'Albert Einstein', years: '1879–1955', role: 'Proved atoms real; co-invented a fridge', tone: 'hot' },
-      { name: 'Jean Perrin', years: '1870–1942', role: 'Counted the molecules', tone: 'cold' },
-      { name: 'Leó Szilárd', years: '1898–1964', role: 'Co-inventor of the fridge', tone: 'hot' },
+      { name: 'Albert Einstein', years: '1879–1955', role: 'Proved atoms real; co-invented a fridge', tone: 'hot', img: 'einstein' },
+      { name: 'Jean Perrin', years: '1870–1942', role: 'Counted the molecules', tone: 'cold', img: 'perrin' },
+      { name: 'Leó Szilárd', years: '1898–1964', role: 'Co-inventor of the fridge', tone: 'hot', img: 'szilard' },
     ],
   }),
   stub({
@@ -152,8 +152,8 @@ export const chapters: Chapter[] = [
     era: '1943 – 1944', mood: 'Order wrung from disorder',
     palette: { primary: '#5ec27f', primarySoft: '#a7e0b3', secondary: '#b6d95a', secondarySoft: '#e0efad', bg: '#06090a', bgRaised: '#101613' },
     figures: [
-      { name: 'Erwin Schrödinger', years: '1887–1961', role: 'Life feeds on “negative entropy”', tone: 'cold' },
-      { name: 'Max Delbrück', years: '1906–1981', role: 'The gene as a quantum-stable molecule', tone: 'hot' },
+      { name: 'Erwin Schrödinger', years: '1887–1961', role: 'Life feeds on “negative entropy”', tone: 'cold', img: 'schrodinger' },
+      { name: 'Max Delbrück', years: '1906–1981', role: 'The gene as a quantum-stable molecule', tone: 'hot', img: 'delbruck' },
     ],
   }),
   stub({
@@ -162,8 +162,8 @@ export const chapters: Chapter[] = [
     era: '1948 – 1961', mood: 'Bits, noise, and the price of forgetting',
     palette: { primary: '#2dd4bf', primarySoft: '#8fe9df', secondary: '#38bdf8', secondarySoft: '#a3e0fc', bg: '#06090c', bgRaised: '#0f1620' },
     figures: [
-      { name: 'Claude Shannon', years: '1916–2001', role: 'Founder of information theory', tone: 'cold' },
-      { name: 'Rolf Landauer', years: '1927–1999', role: 'Erasing a bit costs kT ln2', tone: 'hot' },
+      { name: 'Claude Shannon', years: '1916–2001', role: 'Founder of information theory', tone: 'cold', img: 'shannon' },
+      { name: 'Rolf Landauer', years: '1927–1999', role: 'Erasing a bit costs kT ln2', tone: 'hot', img: 'landauer' },
     ],
   }),
   stub({
@@ -172,8 +172,8 @@ export const chapters: Chapter[] = [
     era: '1972 – present', mood: 'Entropy at the edge of a black hole',
     palette: { primary: '#9d7bff', primarySoft: '#c4adff', secondary: '#ffab5e', secondarySoft: '#ffd0a3', bg: '#05060b', bgRaised: '#0f1020' },
     figures: [
-      { name: 'Jacob Bekenstein', years: '1947–2015', role: 'Black holes have entropy', tone: 'cold' },
-      { name: 'Stephen Hawking', years: '1942–2018', role: 'Black holes radiate heat', tone: 'hot' },
+      { name: 'Jacob Bekenstein', years: '1947–2015', role: 'Black holes have entropy', tone: 'cold', img: 'bekenstein' },
+      { name: 'Stephen Hawking', years: '1942–2018', role: 'Black holes radiate heat', tone: 'hot', img: 'hawking' },
     ],
   }),
 ];
