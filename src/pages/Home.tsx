@@ -11,6 +11,7 @@ import { Link } from '@/router';
 import { FigureRow } from '@/components/layout/FigureRow';
 import { PortraitCredits } from '@/components/layout/PortraitCredits';
 import { hexA } from '@/components/layout/ChapterHero';
+import sunUrl from '@/assets/hero/sun.jpg';
 
 const HOW = [
   { icon: <AutoStoriesRounded />, label: 'Scroll to read', sub: 'The animations move in step with the story.' },
@@ -35,9 +36,34 @@ export function Home() {
       <Box sx={{ position: 'relative', minHeight: { md: '100vh' }, display: 'flex', flexDirection: 'column', justifyContent: 'center', px: { xs: 3, md: 8 }, py: { xs: 8, md: 12 }, overflow: 'hidden' }}>
         <Box aria-hidden sx={{ position: 'absolute', inset: 0, background:
           'radial-gradient(55% 75% at 10% 35%, rgba(255,90,60,0.20), transparent 60%),' +
-          'radial-gradient(55% 75% at 90% 65%, rgba(70,183,255,0.18), transparent 60%),' +
+          'radial-gradient(55% 75% at 92% 62%, rgba(70,183,255,0.12), transparent 55%),' +
           'radial-gradient(120% 120% at 50% 120%, rgba(7,8,12,0.5), #07080c 72%)' }} />
-        <Box sx={{ position: 'relative', maxWidth: 960 }}>
+
+        {/* The Sun — the thermodynamic engine the whole book orbits. `screen` blend
+            drops its black background so it glows into the hero with no hard edge;
+            the mask fades its left so it never crowds the text. Faint on phones. */}
+        <Box
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            width: { xs: '100%', md: '62%' },
+            zIndex: 0,
+            pointerEvents: 'none',
+            backgroundImage: `url(${sunUrl})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: { xs: 'right -22% top -6%', md: 'center right -13%' },
+            backgroundSize: { xs: '84% auto', md: 'auto 126%' },
+            mixBlendMode: 'screen',
+            opacity: { xs: 0.4, md: 0.9 },
+            maskImage: 'linear-gradient(to right, transparent 0%, #000 44%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 44%)',
+          }}
+        />
+
+        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 960 }}>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <Typography variant="overline" sx={{ color: 'text.secondary', fontSize: 13 }}>
               An interactive history of thermodynamics · after Paul Sen’s <em>Einstein’s Fridge</em>
@@ -102,6 +128,16 @@ export function Home() {
             </Box>
           </motion.div>
         </Box>
+
+        <Typography
+          component="a"
+          href="https://commons.wikimedia.org/wiki/File:Full_disk_of_the_Sun_(eso1703e-comparisona).jpg"
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{ position: 'absolute', bottom: 12, right: 16, zIndex: 1, fontFamily: "'JetBrains Mono Variable', monospace", fontSize: 9.5, letterSpacing: '0.06em', color: 'text.secondary', opacity: 0.5, textDecoration: 'none', '&:hover': { opacity: 0.9 } }}
+        >
+          ☉ the Sun · ESO, CC BY 4.0
+        </Typography>
       </Box>
 
       {/* Table of contents */}
