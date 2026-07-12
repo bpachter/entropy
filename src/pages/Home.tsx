@@ -57,9 +57,13 @@ export function Home() {
             backgroundPosition: { xs: 'right -22% top -6%', md: 'center right -13%' },
             backgroundSize: { xs: '84% auto', md: 'auto 126%' },
             mixBlendMode: 'screen',
-            opacity: { xs: 0.4, md: 0.9 },
-            maskImage: 'linear-gradient(to right, transparent 0%, #000 44%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 44%)',
+            opacity: { xs: 0.4, md: 0.92 },
+            // Fade the left (off the text) AND the bottom (so the disc dissolves into
+            // the dark before the hero ends, instead of hard-cutting at the chapters).
+            maskImage: 'linear-gradient(to right, transparent 3%, #000 50%), linear-gradient(to bottom, #000 52%, transparent 95%)',
+            maskComposite: 'intersect',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 3%, #000 50%), linear-gradient(to bottom, #000 52%, transparent 95%)',
+            WebkitMaskComposite: 'source-in',
           }}
         />
 
@@ -131,12 +135,12 @@ export function Home() {
 
         <Typography
           component="a"
-          href="https://commons.wikimedia.org/wiki/File:Full_disk_of_the_Sun_(eso1703e-comparisona).jpg"
+          href="https://commons.wikimedia.org/wiki/File:SDO%27s_Ultra-high_Definition_View_of_2012_Venus_Transit_(304_Angstrom_Full_Disc_02).jpg"
           target="_blank"
           rel="noopener noreferrer"
           sx={{ position: 'absolute', bottom: 12, right: 16, zIndex: 1, fontFamily: "'JetBrains Mono Variable', monospace", fontSize: 9.5, letterSpacing: '0.06em', color: 'text.secondary', opacity: 0.5, textDecoration: 'none', '&:hover': { opacity: 0.9 } }}
         >
-          ☉ the Sun · ESO, CC BY 4.0
+          ☉ the Sun, 304Å · NASA/SDO, CC BY 2.0
         </Typography>
       </Box>
 
