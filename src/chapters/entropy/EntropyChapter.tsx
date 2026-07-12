@@ -5,6 +5,7 @@ import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
 import { FigurePlate } from '@/components/layout/FigurePlate';
+import { ContextPlate } from '@/components/layout/ContextPlate';
 import { ScrollyChapter } from '@/components/scrolly/ScrollyChapter';
 
 const theme = makeChapterTheme(entropyChapter.palette);
@@ -31,6 +32,7 @@ export function EntropyChapter() {
             index={entropyChapter.index}
             blurb="Entropy is counting: S = k log W. He staked his life on atoms being real, and did not live to be proved right."
           />
+          <ContextPlate slug="boltzmann-grave" />
         </Box>
 
         <ChapterFooter chapter={entropyChapter} />

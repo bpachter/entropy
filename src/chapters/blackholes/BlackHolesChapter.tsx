@@ -7,6 +7,7 @@ import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
 import { FigurePlate } from '@/components/layout/FigurePlate';
+import { ContextPlate } from '@/components/layout/ContextPlate';
 import { CosmicPanel } from './components/CosmicPanel';
 import { blackHoleBlocks, type BlackHoleBlock } from './content';
 import { EventHorizon } from './visuals/EventHorizon';
@@ -46,7 +47,9 @@ export function BlackHolesChapter() {
             return (
               <Fragment key={i}>
                 {el}
+                {i === Math.floor(arr.length * 0.28) && <ContextPlate slug="m87-blackhole" />}
                 {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[1]} index={chapter.index} />}
+                {i === Math.floor(arr.length * 0.8) && <ContextPlate slug="hubble-field" />}
               </Fragment>
             );
           })}

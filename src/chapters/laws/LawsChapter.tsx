@@ -6,6 +6,7 @@ import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
 import { FigurePlate } from '@/components/layout/FigurePlate';
+import { ContextPlate } from '@/components/layout/ContextPlate';
 import { LogEntry } from './components/LogEntry';
 import { InstrumentPanel } from './components/InstrumentPanel';
 import { lawsBlocks } from './content';
@@ -50,6 +51,7 @@ export function LawsChapter() {
             return (
               <Fragment key={i}>
                 {el}
+                {i === Math.floor(arr.length * 0.3) && <ContextPlate slug="joule-apparatus" />}
                 {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[0]} index={chapter.index} />}
               </Fragment>
             );

@@ -7,6 +7,7 @@ import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
 import { FigurePlate } from '@/components/layout/FigurePlate';
+import { ContextPlate } from '@/components/layout/ContextPlate';
 import { SignalPanel } from './components/SignalPanel';
 import { infoBlocks, type InfoBlock } from './content';
 import { EntropyMeter } from './visuals/EntropyMeter';
@@ -46,6 +47,7 @@ export function InformationChapter() {
             return (
               <Fragment key={i}>
                 {el}
+                {i === Math.floor(arr.length * 0.3) && <ContextPlate slug="shannon-diagram" />}
                 {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[0]} index={chapter.index} />}
               </Fragment>
             );

@@ -7,6 +7,7 @@ import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
 import { FigurePlate } from '@/components/layout/FigurePlate';
+import { ContextPlate } from '@/components/layout/ContextPlate';
 import { VisualGate } from '@/anim/gate';
 import { engineBlocks, type EngineBlock, type PlateId } from './content';
 import { SteamEngine } from './visuals/SteamEngine';
@@ -38,6 +39,7 @@ export function EngineChapter() {
           {engineBlocks.map((block, i, arr) => (
             <Fragment key={i}>
               {block.kind === 'prose' ? <Prose block={block} /> : <Plate block={block} />}
+              {i === Math.floor(arr.length * 0.3) && <ContextPlate slug="steam-engine" />}
               {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[0]} index={chapter.index} />}
             </Fragment>
           ))}

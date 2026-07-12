@@ -7,6 +7,7 @@ import { ChapterChrome } from '@/components/layout/ChapterChrome';
 import { ChapterHero } from '@/components/layout/ChapterHero';
 import { ChapterFooter } from '@/components/layout/ChapterFooter';
 import { FigurePlate } from '@/components/layout/FigurePlate';
+import { ContextPlate } from '@/components/layout/ContextPlate';
 import { SpecimenVignette } from './components/SpecimenVignette';
 import { PatentSheet } from './components/PatentSheet';
 import { atomsBlocks, type AtomsBlock } from './content';
@@ -56,7 +57,9 @@ export function AtomsChapter() {
             return (
               <Fragment key={i}>
                 {el}
+                {i === Math.floor(arr.length * 0.28) && <ContextPlate slug="perrin-brownian" />}
                 {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[0]} index={chapter.index} />}
+                {i === Math.floor(arr.length * 0.72) && <ContextPlate slug="einstein-fridge" />}
               </Fragment>
             );
           })}
