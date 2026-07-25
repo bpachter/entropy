@@ -10,7 +10,7 @@ export interface ChapterPalette {
   bgRaised: string;
 }
 
-export type VisualKind = 'mixing' | 'microstates' | 'demon';
+export type VisualKind = 'mixing' | 'microstates' | 'demon' | 'blackbody';
 
 export interface Beat {
   id: string;

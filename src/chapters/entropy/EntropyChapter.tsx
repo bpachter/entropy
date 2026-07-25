@@ -33,6 +33,12 @@ export function EntropyChapter() {
             blurb="Entropy is counting: S = k log W. He staked his life on atoms being real, and did not live to be proved right."
           />
           <ContextPlate slug="boltzmann-grave" />
+          <FigurePlate
+            layout="banner"
+            figure={entropyChapter.figures[3]}
+            index={entropyChapter.index}
+            blurb="A cautious man who wanted nothing more than a formula to fit a lightbulb-testing curve — and ended up quantizing the universe to get it."
+          />
         </Box>
 
         <ChapterFooter chapter={entropyChapter} />

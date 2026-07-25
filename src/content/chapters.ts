@@ -27,6 +27,7 @@ export const entropyChapter: Chapter = {
     { name: 'Rudolf Clausius', years: '1822–1888', role: 'Named entropy; stated the second law', tone: 'hot', img: 'clausius' },
     { name: 'James Clerk Maxwell', years: '1831–1879', role: 'Conjured the demon', tone: 'cold', img: 'maxwell' },
     { name: 'Ludwig Boltzmann', years: '1844–1906', role: 'Entropy as counting: S = k log W', tone: 'hot', img: 'boltzmann' },
+    { name: 'Max Planck', years: '1858–1947', role: 'Used Boltzmann’s own tool to end the ultraviolet catastrophe', tone: 'cold', img: 'planck' },
   ],
   beats: [
     {
@@ -110,6 +111,44 @@ export const entropyChapter: Chapter = {
         text: 'S = k · log W',
         cite: 'Engraved on Boltzmann’s tombstone, Vienna',
       },
+    },
+    {
+      id: 'planck-crisis',
+      eyebrow: 'Berlin, the same years',
+      heading: 'A curve two theories couldn’t fit',
+      visual: 'blackbody',
+      body: [
+        'Heat any cavity — a kiln, a furnace, an oven — and open a small hole in its wall, and the color of the light spilling out depends on exactly one thing: the temperature inside. Not the metal, not the size, not what’s burning. Gustav Kirchhoff had proved as much in 1859: every hot object obeys the same universal curve. By the 1890s, measuring that curve precisely had become a serious industrial concern — Germany’s national physics institute in Berlin needed it to standardize the incandescent lightbulb, then still a young and wasteful technology — and no one could yet write down the formula the data so plainly wanted to obey.',
+        'Two candidates split the job, and each was only half right. Wien’s law fit beautifully at short wavelengths — the blue and violet end of the glow — and collapsed at the red end. The rival Rayleigh–Jeans law, built honestly out of classical electromagnetism, did the reverse: solid at long wavelengths, and at short ones it didn’t just fail, it diverged, predicting that any warm object should pour out unlimited energy as wavelength shrank toward zero. Drag the temperature slider and watch the dashed curve do exactly that. Taken at face value, classical physics said your oven should be flooding the kitchen with lethal ultraviolet. It plainly does not.',
+      ],
+      pullquote: {
+        text: 'The ultraviolet catastrophe.',
+        cite: 'Paul Ehrenfest’s name for it, 1911 — a decade after the fact',
+      },
+    },
+    {
+      id: 'planck-quanta',
+      eyebrow: '14 December 1900',
+      heading: 'Planck’s desperate fix',
+      visual: 'blackbody',
+      body: [
+        'Max Planck was, by his own account, a cautious man who distrusted revolutions, and for six frustrating years he had been hunting one formula to fit the whole curve, not just one end of it. In October 1900 he found one — almost by interpolation, stitching Wien’s shape at short wavelengths to Rayleigh’s at long ones. It matched the measured data everywhere in between, perfectly. He had no idea yet why it worked.',
+        'Working backward with the very tool this chapter has been building — Boltzmann’s statistical entropy, S = k log W — Planck found his formula only fell out of the mathematics if he assumed something physics had never needed before: the oscillators radiating that light cannot trade energy continuously. They can only exchange it in fixed lumps, each sized to the light’s frequency, E = hν. He presented the idea to the German Physical Society on 14 December 1900, a date now often toasted as quantum theory’s birthday — though Planck himself spent years afterward treating his own quantum as a convenient trick, not yet a fact about the world.',
+      ],
+      pullquote: {
+        text: 'Briefly summarized, what I did can be described as simply an act of desperation.',
+        cite: 'Max Planck, letter to Robert W. Wood, 1931',
+      },
+    },
+    {
+      id: 'planck-meaning',
+      eyebrow: 'Why one assumption was enough',
+      heading: 'The lump that saved the universe',
+      visual: 'blackbody',
+      body: [
+        'Drag h down toward zero on the same slider and watch the quantum curve slide until it lies exactly on top of the classical one — because at h = 0 they are the same equation. That is the whole mechanism, made visible: shrink the lump size to nothing and you are back in the broken 19th-century universe, radiating infinite ultraviolet from every warm surface. Keep h at its real, tiny, non-zero value, and something quietly decisive happens at high frequency. A mode of light can only fire if it can afford one whole lump, hν, and at short wavelengths that lump costs more than the thermal energy jostling around to pay for it. The mode doesn’t glow faintly — it simply never fires. Infinite energy becomes zero, one restriction at a time.',
+        'Planck had not set out to overthrow classical physics; he wanted a formula that fit a lightbulb-testing curve, and reached for Boltzmann’s statistics only because nothing else worked. He was not sure the lumps were real. It took Albert Einstein, five years later, to insist that light itself — not just the oscillators in an oven wall — comes in these same quanta, and to go looking for a completely different kind of proof.',
+      ],
     },
   ],
   available: true,

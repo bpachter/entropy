@@ -5,6 +5,7 @@ import type { VisualKind } from '@/content/types';
 import { MixingSim } from '@/components/sim/MixingSim';
 import { MicrostatesViz } from '@/components/sim/MicrostatesViz';
 import { DemonSim } from '@/components/sim/DemonSim';
+import { BlackbodySim } from '@/components/sim/BlackbodySim';
 
 function render(kind: VisualKind) {
   switch (kind) {
@@ -14,6 +15,8 @@ function render(kind: VisualKind) {
       return <MicrostatesViz />;
     case 'demon':
       return <DemonSim />;
+    case 'blackbody':
+      return <BlackbodySim />;
   }
 }
 
