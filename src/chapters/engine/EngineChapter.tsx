@@ -13,6 +13,52 @@ import { engineBlocks, type EngineBlock, type PlateId } from './content';
 import { SteamEngine } from './visuals/SteamEngine';
 import { HeatWaterfall } from './visuals/HeatWaterfall';
 import { CarnotCycle } from './visuals/CarnotCycle';
+import { KernelCell } from '@/components/layout/KernelCell';
+
+const CARNOT_S_CEILING_AGAINST_REA_CODE = String.raw`
+# Carnot's ceiling, held against machines people actually built.
+# eta = 1 - Tc/Th is a hard upper bound on ANY heat engine between two
+# reservoirs. Curzon and Ahlborn (Am. J. Phys. 43, 22, 1975) asked a different
+# question -- what is the efficiency of an engine tuned for maximum POWER
+# rather than maximum efficiency -- and got 1 - sqrt(Tc/Th). The three plants
+# below, with their measured efficiencies, are the table from that paper.
+from math import sqrt
+
+plants = [
+    # name,                       Th (K), Tc (K), measured efficiency
+    ("West Thurrock coal, UK",      838,    298,  0.36),
+    ("CANDU nuclear, Canada",       573,    298,  0.30),
+    ("Larderello geothermal, IT",   523,    353,  0.16),
+]
+
+print(f"{'plant':27s} {'Th':>4s} {'Tc':>4s} {'Carnot':>7s} {'C-A':>6s} {'built':>6s}")
+print("-" * 60)
+for name, th, tc, obs in plants:
+    carnot = 1 - tc / th
+    ca = 1 - sqrt(tc / th)
+    print(f"{name:27s} {th:4d} {tc:4d} {carnot:7.3f} {ca:6.3f} {obs:6.3f}")
+
+print()
+for name, th, tc, obs in plants:
+    carnot = 1 - tc / th
+    ca = 1 - sqrt(tc / th)
+    print(f"{name.split(',')[0]:22s}  {obs/carnot:5.0%} of Carnot   "
+          f"{obs - ca:+.3f} vs Curzon-Ahlborn")
+print()
+print("  every one lands between 49 and 63 percent of its own Carnot ceiling,")
+print("  and within five points of the maximum-power line. The ceiling is not")
+print("  a target anybody is closing on; the square root is where they live.")
+
+# Carnot says only the two temperatures matter. So: how hot would the fire
+# have to be to reach a given efficiency against a 298 K river?
+print()
+print("with a 298 K cold sink, the fire Carnot demands:")
+for target in (0.40, 0.60, 0.80, 0.90, 0.99):
+    th = 298 / (1 - target)
+    print(f"  eta = {target:4.0%}   ->  Th = {th:7.0f} K  ({th - 273.15:6.0f} C)")
+print()
+print("  eta = 100%  ->  Th = infinite, or Tc = 0 K. The universe supplies neither.")
+`;
 
 const chapter = chapterById('engine')!;
 const theme = makeChapterTheme(chapter.palette);
@@ -41,6 +87,13 @@ export function EngineChapter() {
               {block.kind === 'prose' ? <Prose block={block} /> : <Plate block={block} />}
               {i === Math.floor(arr.length * 0.3) && <ContextPlate slug="steam-engine" />}
               {i === Math.floor(arr.length / 2) && <FigurePlate layout="banner" figure={chapter.figures[0]} index={chapter.index} />}
+              {i === Math.floor(arr.length / 2) && (
+                <KernelCell
+                  title="carnot's ceiling, against real plants"
+                  intro={<>Carnot's limit is easy to state and hard to feel. Here it is held against three power stations with published efficiencies, and against a one-line refinement — Curzon and Ahlborn's 1 − √(Tc/Th), which asks not what an engine could achieve but what it achieves when it is tuned for power rather than for perfection. All three plants land between 49 and 63 percent of their Carnot ceiling, and within five points of the square root. The ceiling is not a target anybody is closing on.</>}
+                  code={CARNOT_S_CEILING_AGAINST_REA_CODE}
+                />
+              )}
             </Fragment>
           ))}
         </Box>

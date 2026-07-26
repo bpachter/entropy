@@ -17,7 +17,14 @@ export function useRaf(cb: (dt: number) => void, active = true): void {
     let raf = 0;
     let last = performance.now();
     const loop = (t: number) => {
-      const dt = Math.min(0.05, (t - last) / 1000);
+      // Clamp low as well as high. A requestAnimationFrame timestamp is the time
+      // the frame *started*, which can predate the performance.now() captured
+      // when this effect ran — so the first delta after a (re)mount can be
+      // negative. Anything integrating dt then runs backwards past zero, and a
+      // consumer doing `Math.floor(phase) % n` gets a NEGATIVE index, because
+      // JavaScript's % keeps the sign of the dividend. That crashed the
+      // Information chapter (STAGES[-1].sub) and blanked the whole route.
+      const dt = Math.max(0, Math.min(0.05, (t - last) / 1000));
       last = t;
       cbRef.current(dt);
       raf = requestAnimationFrame(loop);
